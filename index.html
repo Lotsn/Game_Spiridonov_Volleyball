@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Волейбол!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Coiny';
+            src: url('coinycyrillic.otf') format('opentype');
+        }
+
+        form,
+        button {
+            font-family: 'Coiny', cursive;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px 10px;
+            margin-left: 0px auto;
+            margin-right: 0px auto;
+        }
+    </style>
+    <script>
+        function playGameAction() {
+            var gamemode = document.getElementById("gamemode").value;
+            document.getElementById("form").action = 'pages/' + gamemode + ".html";
+        }
+        function showHideSecondUsername() {
+            var gamemode = document.getElementById("gamemode").value;
+            if (gamemode == "dual-mode") {
+                document.getElementById("firstUsernameLabel").innerText = 'Первый никнейм:';
+                document.getElementById("secondUsername").style.display = "block";
+            } else {
+                document.getElementById("firstUsernameLabel").innerText = 'Никнейм:';
+                document.getElementById("secondUsername").style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body style="background-image: url(pages/background.jpg); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;">
+    <h1 style="text-align: center; -webkit-text-stroke: 2px black;">Волейбол!</h1>
+
+    <div style="display: flex; justify-content: center; flex-direction: row;">
+        <div id="wrapper" style="display: flex; justify-content: center; flex-direction: column;">
+            <form id="form" action="training-mode.html" method="get" onsubmit="playGameAction()">
+                <label id="firstUsernameLabel" for="username">Никнейм:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <div id="secondUsername" style="display:none;">
+                    <label for="secondUsername">Второй никнейм:</label><br>
+                    <input type="text" id="secondUsername" name="secondUsername"><br>
+                </div>
+                <label for="gamemode">Режим игры:</label><br>
+                <select id="gamemode" name="gamemode" onchange="playGameAction(); showHideSecondUsername();">
+                    <option value="training-mode">Тренировка</option>
+                    <option value="single-mode">Игра против компьютера</option>
+                    <option value="dual-mode">Игра с другом</option>
+                </select><br><br>
+                <input type="submit" value="Начать">
+            </form>
+            <button id='records'>
+                <a href="pages/record.html" style="text-decoration: none;">Таблица рекордов</a>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
